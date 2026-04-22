@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>SALUBRIOUS — The Mower for India's Finest Resorts</title>
+<meta name="description" content="The Cub Cadet XT2 GX54 D — the riding mower trusted by India's most prestigious resorts and palace hotels. Supplied exclusively by Salubrious." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --black-2:#141414;
+    --black-3:#1d1d1d;
+    --white:#ffffff;
+    --offwhite:#f4f4f0;
+    --gray:#888;
+    --gray-light:#bbb;
+    --gray-dark:#333;
+    --gold:#d4a544;
+    --gold-bright:#f0c560;
+    --yellow:#ffd400;
+    --green:#1c5e36;
+    --green-bright:#2d8b50;
+    --red:#e8421f;
+    --line:rgba(212,165,68,0.18);
+    --line-strong:rgba(212,165,68,0.4);
+    --display:'Anton', 'Impact', sans-serif;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --bold:'Archivo', system-ui, sans-serif;
+    --sans:'Inter', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;background:var(--black)}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.5;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold);color:var(--black)}
+  img{max-width:100%;display:block}
+
+  /* ===== LOADER ===== */
+  .loader{
+    position:fixed;inset:0;background:var(--black);z-index:9998;
+    display:grid;place-items:center;
+    transition:opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .loader.gone{opacity:0;visibility:hidden;pointer-events:none}
+  .loader-bar{
+    width:280px;height:1px;background:rgba(212,165,68,0.15);position:relative;overflow:hidden;
+  }
+  .loader-bar::after{
+    content:'';position:absolute;left:0;top:0;height:100%;width:0%;
+    background:var(--gold);animation:loadBar 1.4s ease-in-out forwards;
+  }
+  .loader-text{
+    position:absolute;top:calc(50% - 60px);left:50%;transform:translateX(-50%);
+    font-family:var(--display);font-size:42px;color:var(--gold);letter-spacing:0.06em;
+    overflow:hidden;
+  }
+  .loader-text span{display:inline-block;animation:loadIn 0.6s cubic-bezier(0.16,1,0.3,1) both}
+  @keyframes loadIn{from{transform:translateY(110%)}to{transform:translateY(0)}}
+  @keyframes loadBar{to{width:100%}}
+
+  /* ===== TOP BAR ===== */
+  .top-bar{
+    position:fixed;top:0;left:0;right:0;z-index:101;
+    background:var(--black);color:var(--gold);
+    height:30px;display:flex;align-items:center;overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .top-bar-track{
+    display:flex;gap:48px;animation:scroll 45s linear infinite;
+    white-space:nowrap;width:max-content;
+  }
+  .top-bar-item{
+    font-family:var(--bold);font-size:10px;font-weight:600;letter-spacing:0.22em;
+    text-transform:uppercase;display:flex;align-items:center;gap:48px;
+  }
+  .top-bar-item::after{content:'◆';color:var(--gold);font-size:6px;opacity:0.7}
+
+  /* ===== NAV ===== */
+  .nav{
+    position:fixed;top:30px;left:0;right:0;z-index:100;
+    padding:18px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+    transition:all 0.4s ease;
+  }
+  .nav.scrolled{padding:12px 40px;background:rgba(10,10,10,0.96)}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--white)}
+  .brand-mark{
+    width:46px;height:46px;
+    background:linear-gradient(135deg,var(--gold),#a37e2c);
+    display:grid;place-items:center;
+    font-family:var(--display);font-size:30px;color:var(--black);
+    transform:skewX(-6deg);
+    transition:transform 0.3s;
+    box-shadow:0 4px 16px rgba(212,165,68,0.3);
+  }
+  .brand:hover .brand-mark{transform:skewX(-6deg) scale(1.06)}
+  .brand-name{
+    font-family:var(--display);font-size:30px;letter-spacing:0.08em;
+    line-height:1;text-transform:uppercase;
+  }
+  .brand-tag{
+    font-family:var(--bold);font-size:9px;letter-spacing:0.32em;
+    color:var(--gold);text-transform:uppercase;margin-top:3px;font-weight:700;
+  }
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links > a{
+    color:var(--white);text-decoration:none;
+    font-family:var(--bold);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+    font-weight:600;position:relative;transition:color 0.3s;
+  }
+  .nav-links > a:not(.nav-cta):not(.nav-phone)::after{
+    content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;
+    background:var(--gold);transition:width 0.4s;
+  }
+  .nav-links > a:not(.nav-cta):not(.nav-phone):hover{color:var(--gold)}
+  .nav-links > a:not(.nav-cta):not(.nav-phone):hover::after{width:100%}
+  .nav-cta{
+    background:var(--gold);color:var(--black)!important;
+    padding:14px 26px;font-weight:800!important;
+    transition:all 0.3s;display:flex;align-items:center;gap:10px;
+    border:1px solid var(--gold);
+  }
+  .nav-cta:hover{background:transparent;color:var(--gold)!important}
+  .nav-phone{
+    color:var(--gold)!important;font-weight:700!important;
+    display:flex;align-items:center;gap:8px;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;min-height:100vh;
+    overflow:hidden;padding-top:30px;
+  }
+  .hero-stage{
+    position:absolute;inset:0;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:-5%;
+    background-color:#1c2820;
+    background-image:
+      linear-gradient(135deg, rgba(212,165,68,0.08), transparent 60%),
+      url('https://outdoorecommassets.sbdcdn.sbd-prod.com/ASSETS/OUTDOORECOMM/CUBCADET/riding-lawn-mowers/13AQA1TLA10_XT1LT50-2.jpg'),
+      linear-gradient(180deg, #1c2820 0%, #0a1410 100%);
+    background-size:cover, cover, cover;
+    background-position:center, center, center;
+    background-repeat:no-repeat;
+    transform:scale(1.08);
+    animation:kenBurns 28s ease-in-out infinite alternate;
+    will-change:transform;
+  }
+  @keyframes kenBurns{
+    0%{transform:scale(1.1) translate(0,0)}
+    100%{transform:scale(1.25) translate(-2%,-2%)}
+  }
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.25) 30%, rgba(10,10,10,0.85) 80%, rgba(10,10,10,0.98) 100%),
+      linear-gradient(90deg, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.35) 50%, transparent 100%);
+  }
+
+  /* Live indicator overlay (gives video feel) */
+  .hero-live-badge{
+    position:absolute;top:60px;right:40px;z-index:4;
+    display:flex;align-items:center;gap:8px;
+    background:rgba(10,10,10,0.7);
+    backdrop-filter:blur(8px);
+    padding:8px 14px;border:1px solid var(--line-strong);
+  }
+  .hero-live-badge .rec-dot{
+    width:8px;height:8px;background:var(--red);border-radius:50%;
+    animation:pulse 1.5s infinite;
+  }
+  .hero-live-badge span{
+    font-family:var(--bold);font-size:9px;letter-spacing:0.3em;
+    text-transform:uppercase;color:var(--white);font-weight:700;
+  }
+
+  /* Cinematic letterbox bars */
+  .hero::before{
+    content:'';position:absolute;top:30px;left:0;right:0;height:4px;
+    background:var(--black);z-index:3;
+  }
+
+  .hero-grain{
+    position:absolute;inset:0;pointer-events:none;
+    opacity:0.18;mix-blend-mode:overlay;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero-content{
+    position:relative;z-index:5;
+    max-width:1500px;margin:0 auto;
+    padding:170px 40px 120px;
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--bold);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:36px;font-weight:700;
+    opacity:0;animation:slideRight 0.8s ease 0.2s forwards;
+  }
+  .hero-eyebrow::before{content:'';width:50px;height:1px;background:var(--gold)}
+  .hero-eyebrow .pulse{
+    width:9px;height:9px;background:var(--red);border-radius:50%;
+    animation:pulse 1.5s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(232,66,31,0.7)}
+    50%{box-shadow:0 0 0 12px rgba(232,66,31,0)}
+  }
+  @keyframes slideRight{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+
+  h1.mega{
+    font-family:var(--display);
+    font-size:clamp(56px,9.5vw,168px);
+    line-height:0.86;letter-spacing:-0.005em;
+    text-transform:uppercase;color:var(--white);
+    margin-bottom:36px;
+  }
+  h1.mega .line{display:block;overflow:hidden}
+  h1.mega .line span{
+    display:inline-block;transform:translateY(110%);
+    animation:slideUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  h1.mega .gold{color:var(--gold)}
+  h1.mega .serif{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    color:var(--gold);text-transform:none;letter-spacing:-0.01em;
+  }
+  @keyframes slideUp{to{transform:translateY(0)}}
+
+  .hero-sub{
+    display:flex;align-items:flex-end;gap:60px;margin-top:32px;flex-wrap:wrap;
+    opacity:0;animation:fadeUp 1s ease 1.4s forwards;
+  }
+  .hero-lead{
+    max-width:520px;font-size:18px;line-height:1.65;color:var(--gray-light);
+  }
+  .hero-lead strong{color:var(--gold);font-weight:600}
+
+  .hero-actions{
+    display:flex;gap:16px;margin-top:48px;flex-wrap:wrap;
+    opacity:0;animation:fadeUp 1s ease 1.6s forwards;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:22px 40px;
+    font-family:var(--bold);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;
+    text-decoration:none;font-weight:800;cursor:pointer;border:none;
+    transition:all 0.3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;
+  }
+  .btn-gold{
+    background:var(--gold);color:var(--black);
+    border:1px solid var(--gold);
+  }
+  .btn-gold::before{
+    content:'';position:absolute;inset:0;background:var(--black);
+    transform:translateY(101%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .btn-gold:hover{color:var(--gold)}
+  .btn-gold:hover::before{transform:translateY(0)}
+  .btn-gold > *{position:relative;z-index:1}
+  .btn-outline{
+    background:transparent;color:var(--white);border:1px solid var(--white);
+  }
+  .btn-outline:hover{background:var(--white);color:var(--black)}
+  .btn-arrow{display:inline-block;transition:transform 0.4s;font-size:18px}
+  .btn:hover .btn-arrow{transform:translateX(8px)}
+
+  .hero-credential{
+    position:absolute;bottom:48px;right:40px;z-index:5;
+    display:flex;align-items:center;gap:18px;
+    background:rgba(10,10,10,0.7);
+    backdrop-filter:blur(10px);
+    padding:18px 24px;border-left:2px solid var(--gold);
+    opacity:0;animation:fadeUp 1s ease 2s forwards;
+  }
+  .hero-credential-icon{
+    width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;
+    display:grid;place-items:center;color:var(--gold);
+  }
+  .hero-credential small{
+    font-family:var(--bold);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;display:block;margin-bottom:4px;
+  }
+  .hero-credential strong{
+    font-family:var(--serif);font-style:italic;color:var(--white);
+    font-size:18px;font-weight:400;letter-spacing:0.01em;
+  }
+
+  .scroll-cue{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:5;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    color:var(--white);
+    opacity:0;animation:fadeIn 1s ease 2.2s forwards;
+  }
+  .scroll-cue span{
+    font-family:var(--bold);font-size:10px;letter-spacing:0.3em;
+    text-transform:uppercase;font-weight:600;
+  }
+  .scroll-cue-line{
+    width:1px;height:32px;background:var(--gold);
+    animation:scrollLine 1.6s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%{transform:scaleY(0);transform-origin:top}
+    50%{transform:scaleY(1);transform-origin:top}
+    51%{transform:scaleY(1);transform-origin:bottom}
+    100%{transform:scaleY(0);transform-origin:bottom}
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ===== MARQUEE ===== */
+  .marquee{
+    background:var(--gold);color:var(--black);
+    padding:22px 0;overflow:hidden;
+    border-top:2px solid var(--black);border-bottom:2px solid var(--black);
+    position:relative;z-index:5;
+  }
+  .marquee.dark{background:var(--black);color:var(--gold);border-color:var(--gold)}
+  .marquee-track{
+    display:flex;gap:60px;animation:scroll 35s linear infinite;
+    white-space:nowrap;width:max-content;
+  }
+  .marquee-item{
+    font-family:var(--display);font-size:48px;letter-spacing:0.02em;
+    text-transform:uppercase;display:flex;align-items:center;gap:60px;
+  }
+  .marquee-item::after{content:'★';font-size:24px}
+  .marquee-item .serif{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:400}
+
+  /* ===== SECTION BASE ===== */
+  section{padding:140px 40px;position:relative}
+  .container{max-width:1500px;margin:0 auto}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--bold);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:24px;font-weight:700;
+  }
+  .eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
+  h2.section-mega{
+    font-family:var(--display);
+    font-size:clamp(48px,7vw,128px);line-height:0.9;letter-spacing:-0.005em;
+    text-transform:uppercase;margin-bottom:32px;
+  }
+  h2.section-mega .gold{color:var(--gold)}
+  h2.section-mega .serif{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--gold);font-weight:400;letter-spacing:-0.01em}
+  .section-lead{
+    font-size:19px;color:var(--gray-light);max-width:680px;line-height:1.65;
+  }
+
+  /* ===== FOMO / STATUS ===== */
+  .status{background:var(--black);position:relative;overflow:hidden}
+  .status-header{margin-bottom:80px;max-width:900px}
+  .status-header h2{
+    font-family:var(--display);
+    font-size:clamp(48px,7vw,120px);line-height:0.92;letter-spacing:-0.005em;
+    text-transform:uppercase;margin-bottom:32px;
+  }
+  .status-header h2 .serif{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    color:var(--gold);text-transform:none;letter-spacing:-0.01em;
+    display:block;
+  }
+  .status-header p{font-size:20px;color:var(--gray-light);line-height:1.6;max-width:640px}
+  .status-header p strong{color:var(--white);font-weight:600}
+
+  .vs-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:1px solid var(--line);
+    margin-top:40px;
+  }
+  .vs-side{
+    padding:48px 40px;position:relative;min-height:520px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    overflow:hidden;
+  }
+  .vs-side.bad{
+    background:linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.5) 60%, rgba(10,10,10,0.95) 100%),
+      url('https://outdoorecommassets.sbdcdn.sbd-prod.com/ASSETS/OUTDOORECOMM/CUBCADET/riding-lawn-mowers/chnage-blades.png');
+    background-size:cover;background-position:center;
+    border-right:1px solid var(--line);
+  }
+  .vs-side.bad::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(10,10,10,0.4), rgba(10,10,10,0.85));
+    filter:saturate(0.4) hue-rotate(20deg);
+  }
+  .vs-side.good{
+    background:linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0.92) 100%),
+      url('https://outdoorecommassets.sbdcdn.sbd-prod.com/ASSETS/OUTDOORECOMM/CUBCADET/riding-lawn-mowers/13AQA1TLA10_XT1LT50-2.jpg');
+    background-size:cover;background-position:center;
+  }
+  .vs-side > *{position:relative;z-index:2}
+  .vs-tag{
+    font-family:var(--bold);font-size:10px;letter-spacing:0.4em;text-transform:uppercase;
+    font-weight:800;margin-bottom:18px;display:inline-block;
+    padding:6px 12px;
+  }
+  .vs-side.bad .vs-tag{background:var(--red);color:var(--white)}
+  .vs-side.good .vs-tag{background:var(--gold);color:var(--black)}
+  .vs-side h3{
+    font-family:var(--display);font-size:clamp(36px,4.5vw,68px);line-height:0.95;
+    text-transform:uppercase;margin-bottom:18px;letter-spacing:-0.005em;
+  }
+  .vs-side.bad h3{color:#aaa}
+  .vs-side.good h3{color:var(--white)}
+  .vs-side.good h3 .gold{color:var(--gold)}
+  .vs-side p{font-size:16px;line-height:1.6;max-width:420px}
+  .vs-side.bad p{color:#888}
+  .vs-side.good p{color:var(--gray-light)}
+
+  /* ===== HERO PRODUCT ===== */
+  .product-hero{
+    background:linear-gradient(180deg,var(--black-2) 0%, var(--black) 100%);
+    padding:160px 40px;border-top:1px solid var(--line);position:relative;overflow:hidden;
+  }
+  .product-hero::before{
+    content:'XT2';position:absolute;
+    font-family:var(--display);font-size:clamp(280px,38vw,640px);
+    color:rgba(212,165,68,0.04);line-height:0.85;letter-spacing:-0.02em;
+    top:50%;left:50%;transform:translate(-50%,-45%);
+    pointer-events:none;white-space:nowrap;
+  }
+  .product-hero-grid{
+    max-width:1500px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+    position:relative;z-index:2;
+  }
+  .product-image-wrap{
+    position:relative;aspect-ratio:1/1;
+    display:grid;place-items:center;
+    perspective:1200px;
+  }
+  .product-image-bg-deco{
+    position:absolute;inset:10%;
+    border:1px solid var(--line-strong);
+    background:radial-gradient(ellipse at center, rgba(212,165,68,0.15), transparent 65%);
+  }
+  .product-image-corners{position:absolute;inset:0}
+  .product-corner{position:absolute;width:36px;height:36px;border:1px solid var(--gold)}
+  .pc-tl{top:0;left:0;border-right:none;border-bottom:none}
+  .pc-tr{top:0;right:0;border-left:none;border-bottom:none}
+  .pc-bl{bottom:0;left:0;border-right:none;border-top:none}
+  .pc-br{bottom:0;right:0;border-left:none;border-top:none}
+  .product-image-wrap img{
+    position:relative;z-index:2;
+    max-width:90%;max-height:90%;object-fit:contain;
+    filter:drop-shadow(0 40px 60px rgba(0,0,0,0.7));
+    animation:floaty 6s ease-in-out infinite;
+    transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+
+  .product-badge-spec{
+    position:absolute;background:var(--gold);color:var(--black);
+    padding:14px 18px;text-align:center;z-index:5;
+    font-family:var(--display);
+  }
+  .product-badge-spec.top-right{top:8%;right:8%;transform:rotate(5deg)}
+  .product-badge-spec.bottom-left{bottom:10%;left:0;transform:rotate(-3deg)}
+  .product-badge-spec .num{font-size:32px;line-height:1;letter-spacing:0.02em}
+  .product-badge-spec .lbl{font-family:var(--bold);font-size:8px;letter-spacing:0.3em;text-transform:uppercase;font-weight:800;margin-top:4px}
+
+  .product-text .product-series{
+    font-family:var(--bold);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:24px;font-weight:700;
+  }
+  .product-text h2{
+    font-family:var(--display);
+    font-size:clamp(56px,7vw,128px);line-height:0.85;
+    text-transform:uppercase;margin-bottom:24px;letter-spacing:-0.01em;
+  }
+  .product-text h2 .gold{color:var(--gold)}
+  .product-text .tagline{
+    font-family:var(--serif);font-style:italic;
+    font-size:24px;color:var(--gold);line-height:1.3;margin-bottom:32px;
+    font-weight:400;
+  }
+  .product-text > p{
+    font-size:17px;color:var(--gray-light);line-height:1.7;margin-bottom:40px;
+  }
+
+  .spec-strip{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);
+    margin-bottom:40px;
+  }
+  .spec-cell{padding:20px 16px;border-right:1px solid var(--line);text-align:left}
+  .spec-cell:last-child{border-right:none}
+  .spec-cell .lbl{
+    font-family:var(--bold);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--gray);margin-bottom:8px;font-weight:600;
+  }
+  .spec-cell .val{font-family:var(--display);font-size:32px;color:var(--white);line-height:1;letter-spacing:0.02em}
+  .spec-cell .val small{font-family:var(--bold);font-size:13px;color:var(--gray-light);font-weight:600;letter-spacing:0.04em}
+
+  .feature-list{list-style:none;margin-bottom:40px}
+  .feature-list li{
+    font-size:15px;color:var(--gray-light);line-height:1.7;
+    padding-left:28px;position:relative;margin-bottom:10px;
+  }
+  .feature-list li::before{
+    content:'→';position:absolute;left:0;top:0;
+    color:var(--gold);font-weight:700;font-size:16px;
+  }
+  .product-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* ===== VIDEO SECTION ===== */
+  .video{
+    background:var(--black);
+    padding:140px 40px;border-top:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  .video-header{text-align:center;max-width:900px;margin:0 auto 80px}
+  .video-header .eyebrow{justify-content:center}
+  .video-header h2{
+    font-family:var(--display);
+    font-size:clamp(48px,6vw,108px);line-height:0.9;text-transform:uppercase;
+    margin-bottom:24px;letter-spacing:-0.005em;
+  }
+  .video-header h2 .serif{
+    font-family:var(--serif);font-style:italic;color:var(--gold);
+    text-transform:none;font-weight:400;letter-spacing:-0.01em;
+  }
+  .video-header p{font-size:18px;color:var(--gray-light);line-height:1.65}
+  .video-frame{
+    max-width:1300px;margin:0 auto;position:relative;
+    border:2px solid var(--gold);
+    aspect-ratio:16/9;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .video-frame::before{
+    content:'';position:absolute;top:-2px;right:-2px;
+    border-top:24px solid var(--gold);border-left:24px solid transparent;z-index:3;
+  }
+  .video-frame iframe{width:100%;height:100%;border:none;display:block}
+  .video-play{
+    display:block;width:100%;height:100%;
+    position:relative;text-decoration:none;color:var(--white);
+    background:var(--black-2);
+    overflow:hidden;
+  }
+  .video-poster{
+    position:absolute;inset:0;
+    background-image:url('https://outdoorecommassets.sbdcdn.sbd-prod.com/ASSETS/OUTDOORECOMM/CUBCADET/riding-lawn-mowers/13AQA1TLA10_XT1LT50-2.jpg');
+    background-size:cover;background-position:center;
+    transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    filter:brightness(0.7);
+  }
+  .video-play:hover .video-poster{transform:scale(1.05);filter:brightness(0.55)}
+  .video-play::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.85) 100%);
+    z-index:1;
+  }
+  .video-play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:96px;height:96px;border-radius:50%;
+    background:var(--gold);color:var(--black);
+    display:grid;place-items:center;z-index:2;
+    box-shadow:0 0 0 0 rgba(212,165,68,0.7);
+    animation:playPulse 2s infinite;
+    transition:transform 0.3s;
+  }
+  .video-play:hover .video-play-btn{transform:translate(-50%,-50%) scale(1.1)}
+  @keyframes playPulse{
+    0%{box-shadow:0 0 0 0 rgba(212,165,68,0.7)}
+    70%{box-shadow:0 0 0 24px rgba(212,165,68,0)}
+    100%{box-shadow:0 0 0 0 rgba(212,165,68,0)}
+  }
+  .video-play-btn svg{margin-left:6px}
+  .video-play-label{
+    position:absolute;bottom:32px;left:32px;z-index:2;
+  }
+  .video-play-label small{
+    display:block;font-family:var(--bold);font-size:9px;letter-spacing:0.32em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:700;
+  }
+  .video-play-label strong{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:22px;color:var(--white);
+  }
+
+  /* ===== CLIENTELE ===== */
+  .clientele{background:var(--black);position:relative;border-top:1px solid var(--line)}
+  .clientele-header{margin-bottom:80px;max-width:900px}
+  .clientele-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+    border-top:1px solid var(--line-strong);
+  }
+  .client-block{
+    padding:60px 48px;border-right:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+    transition:all 0.4s;position:relative;overflow:hidden;
+    cursor:pointer;
+  }
+  .client-block:nth-child(2n){border-right:none}
+  .client-block::before{
+    content:'';position:absolute;inset:0;background:var(--gold);
+    transform:translateX(-101%);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    z-index:0;
+  }
+  .client-block:hover::before{transform:translateX(0)}
+  .client-block > *{position:relative;z-index:1;transition:color 0.4s}
+  .client-block:hover h3,.client-block:hover p,.client-block:hover .client-num{color:var(--black)}
+  .client-num{
+    font-family:var(--display);font-size:32px;color:var(--gold);
+    letter-spacing:0.02em;margin-bottom:24px;display:block;
+  }
+  .client-block h3{
+    font-family:var(--display);font-size:54px;line-height:0.95;
+    text-transform:uppercase;letter-spacing:0.01em;margin-bottom:18px;color:var(--white);
+  }
+  .client-block h3 .serif{font-family:var(--serif);font-style:italic;color:var(--gold);text-transform:none;font-weight:400}
+  .client-block:hover h3 .serif{color:var(--black)}
+  .client-block p{color:var(--gray-light);font-size:16px;line-height:1.6;max-width:480px}
+  .client-arrow{
+    position:absolute;top:48px;right:48px;
+    font-family:var(--display);font-size:48px;color:var(--gold);
+    transform:translateX(0);transition:transform 0.4s, color 0.4s;z-index:1;
+  }
+  .client-block:hover .client-arrow{transform:translateX(12px) rotate(-45deg);color:var(--black)}
+
+  /* ===== STATS BAND ===== */
+  .stats-band{
+    background:var(--gold);color:var(--black);
+    padding:80px 40px;border-top:2px solid var(--black);border-bottom:2px solid var(--black);
+  }
+  .stats-band-grid{
+    max-width:1500px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
+  }
+  .stats-band-item{text-align:left;border-left:3px solid var(--black);padding-left:30px}
+  .stats-band-num{
+    font-family:var(--display);font-size:clamp(72px,9vw,128px);line-height:0.85;
+    letter-spacing:-0.01em;
+  }
+  .stats-band-num small{font-size:0.4em;font-family:var(--bold);font-weight:800}
+  .stats-band-lbl{
+    font-family:var(--bold);font-size:13px;letter-spacing:0.2em;
+    text-transform:uppercase;font-weight:800;margin-top:8px;
+  }
+
+  /* ===== INQUIRY (BOTTOM CONSULTATION) ===== */
+  .inquiry{
+    background:var(--black-2);position:relative;overflow:hidden;
+    border-top:3px solid var(--gold);
+  }
+  .inquiry-bg-text{
+    position:absolute;top:80px;left:-40px;
+    font-family:var(--display);font-size:clamp(180px,22vw,320px);
+    color:rgba(212,165,68,0.04);line-height:0.85;letter-spacing:-0.02em;
+    pointer-events:none;text-transform:uppercase;
+  }
+  .inquiry-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+    position:relative;z-index:2;
+  }
+  .inquiry-left h2{
+    font-family:var(--display);font-size:clamp(56px,6vw,108px);line-height:0.9;
+    text-transform:uppercase;margin-bottom:32px;letter-spacing:-0.005em;
+  }
+  .inquiry-left h2 .gold{color:var(--gold)}
+  .inquiry-left h2 .serif{font-family:var(--serif);font-style:italic;color:var(--gold);text-transform:none;font-weight:400}
+  .inquiry-left > p{color:var(--gray-light);font-size:17px;line-height:1.65;margin-bottom:40px;max-width:480px}
+  .urgency-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    background:rgba(232,66,31,0.12);border:1px solid var(--red);
+    padding:10px 18px;margin-bottom:32px;
+  }
+  .urgency-badge .dot{
+    width:8px;height:8px;background:var(--red);border-radius:50%;
+    animation:pulse 1.5s infinite;
+  }
+  .urgency-badge span{
+    font-family:var(--bold);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--red);font-weight:700;
+  }
+
+  .contact-list{margin-top:40px}
+  .contact-row{
+    display:flex;align-items:center;gap:20px;padding:24px 0;
+    border-top:1px solid var(--line);transition:padding-left 0.3s;
+  }
+  .contact-row:hover{padding-left:8px}
+  .contact-row:last-child{border-bottom:1px solid var(--line)}
+  .contact-icon{
+    width:54px;height:54px;background:var(--black-3);
+    display:grid;place-items:center;color:var(--gold);flex-shrink:0;
+    transition:all 0.3s;border:1px solid var(--line-strong);
+  }
+  .contact-row:hover .contact-icon{background:var(--gold);color:var(--black);border-color:var(--gold)}
+  .contact-row a{
+    color:var(--white);text-decoration:none;font-size:18px;font-weight:600;
+    transition:color 0.3s;
+  }
+  .contact-row a:hover{color:var(--gold)}
+  .contact-row small{
+    display:block;font-family:var(--bold);font-size:9px;letter-spacing:0.3em;
+    text-transform:uppercase;color:var(--gray);margin-bottom:4px;font-weight:700;
+  }
+
+  .form{
+    background:var(--black);
+    padding:56px 48px;position:relative;
+    border:2px solid var(--gold);
+  }
+  .form::before{
+    content:'';position:absolute;top:-2px;right:-2px;
+    border-top:28px solid var(--gold);border-left:28px solid transparent;
+  }
+  .form-title{
+    font-family:var(--display);font-size:48px;line-height:0.9;
+    text-transform:uppercase;margin-bottom:8px;letter-spacing:0.005em;
+  }
+  .form-sub{
+    font-family:var(--bold);font-size:11px;color:var(--gold);
+    letter-spacing:0.28em;text-transform:uppercase;margin-bottom:36px;font-weight:700;
+  }
+  .field{margin-bottom:20px}
+  .field label{
+    display:block;font-family:var(--bold);font-size:10px;letter-spacing:0.3em;
+    text-transform:uppercase;color:var(--gray);margin-bottom:8px;font-weight:700;
+  }
+  .field label .req{color:var(--red);margin-left:4px}
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--black-3);border:1px solid var(--line);
+    padding:16px;color:var(--white);font-family:var(--sans);
+    font-size:15px;font-weight:400;outline:none;transition:all 0.3s;
+  }
+  .field textarea{resize:vertical;min-height:80px}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    border-color:var(--gold);background:var(--black);
+  }
+  .field select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23d4a544' d='M5 6L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+  .field select option{background:var(--black-3);color:var(--white)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .form-submit{
+    width:100%;background:var(--gold);color:var(--black);
+    border:2px solid var(--gold);padding:24px;
+    font-family:var(--bold);font-size:13px;letter-spacing:0.25em;
+    text-transform:uppercase;font-weight:800;cursor:pointer;
+    margin-top:14px;transition:all 0.3s;
+    position:relative;overflow:hidden;
+  }
+  .form-submit::before{
+    content:'';position:absolute;inset:0;background:var(--black);
+    transform:translateY(101%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .form-submit:hover{color:var(--gold)}
+  .form-submit:hover::before{transform:translateY(0)}
+  .form-submit span{position:relative;z-index:1}
+  .form-trust{
+    display:flex;align-items:center;justify-content:center;gap:24px;
+    margin-top:24px;flex-wrap:wrap;
+  }
+  .form-trust-item{
+    display:flex;align-items:center;gap:8px;
+    font-family:var(--bold);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--gray);font-weight:600;
+  }
+  .form-trust-item svg{color:var(--gold);flex-shrink:0}
+  .form-success{display:none;text-align:center;padding:60px 20px}
+  .form-success.show{display:block;animation:fadeUp 0.6s ease}
+  .form-success-icon{
+    width:90px;height:90px;background:var(--gold);
+    display:grid;place-items:center;margin:0 auto 28px;color:var(--black);
+    animation:successPop 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  @keyframes successPop{0%{transform:scale(0) rotate(-180deg)}100%{transform:scale(1) rotate(0)}}
+  .form-success h3{
+    font-family:var(--display);font-size:48px;color:var(--gold);
+    margin-bottom:14px;text-transform:uppercase;letter-spacing:0.01em;
+  }
+  .form-success p{color:var(--gray-light);font-size:16px;line-height:1.7;max-width:380px;margin:0 auto}
+
+  /* ===== WHATSAPP FAB ===== */
+  .whatsapp-fab{
+    position:fixed;bottom:32px;right:32px;z-index:99;
+    width:64px;height:64px;border-radius:50%;
+    background:#25D366;color:white;
+    display:grid;place-items:center;text-decoration:none;
+    box-shadow:0 8px 24px rgba(37,211,102,0.5);
+    animation:wapulse 2s infinite;transition:transform 0.3s;
+  }
+  .whatsapp-fab:hover{transform:scale(1.1)}
+  @keyframes wapulse{
+    0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.5),0 0 0 0 rgba(37,211,102,0.7)}
+    50%{box-shadow:0 8px 24px rgba(37,211,102,0.5),0 0 0 16px rgba(37,211,102,0)}
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--black);border-top:1px solid var(--line);
+    padding:80px 40px 32px;
+  }
+  .footer-top{
+    max-width:1500px;margin:0 auto;
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:60px;
+    padding-bottom:60px;border-bottom:1px solid var(--line);
+  }
+  .footer-brand .brand-name{font-size:42px;margin-bottom:6px;color:var(--white)}
+  .footer-brand p{
+    color:var(--gray);font-size:14px;line-height:1.65;margin-top:24px;max-width:380px;
+  }
+  .footer-col h4{
+    font-family:var(--bold);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:24px;font-weight:800;
+  }
+  .footer-col a,.footer-col p{
+    display:block;color:var(--gray-light);text-decoration:none;
+    font-size:14px;margin-bottom:12px;transition:color 0.3s, padding-left 0.3s;line-height:1.6;
+  }
+  .footer-col a:hover{color:var(--gold);padding-left:6px}
+  .footer-bot{
+    max-width:1500px;margin:36px auto 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;color:var(--gray);letter-spacing:0.04em;flex-wrap:wrap;gap:14px;
+    font-family:var(--bold);font-weight:600;text-transform:uppercase;letter-spacing:0.16em;
+  }
+  .footer-bot .gold{color:var(--gold);font-family:var(--serif);font-style:italic;text-transform:none;font-size:14px}
+
+  /* ===== REVEAL ===== */
+  .reveal{opacity:0;transform:translateY(60px);transition:opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal-stagger > *{opacity:0;transform:translateY(40px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)}
+  .reveal-stagger.in > *{opacity:1;transform:translateY(0)}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:0s}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:0.1s}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:0.2s}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:0.3s}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1024px){
+    .top-bar{height:26px}
+    .top-bar-item{font-size:9px}
+    .nav{padding:14px 20px;top:26px}
+    .nav.scrolled{padding:10px 20px}
+    .nav-links{gap:14px}
+    .nav-links > a:not(.nav-cta){display:none}
+    .hero-content{padding:140px 20px 100px}
+    .hero-credential{position:relative;bottom:auto;right:auto;margin-top:40px;display:inline-flex}
+    section{padding:80px 20px}
+    .vs-grid,.product-hero-grid,.inquiry-grid,.clientele-grid,.stats-band-grid,.footer-top{grid-template-columns:1fr;gap:40px}
+    .vs-side{border-right:none;border-bottom:1px solid var(--line)}
+    .vs-side.bad{border-right:none}
+    .vs-side{min-height:360px}
+    .client-block{border-right:none;border-bottom:1px solid var(--line-strong)}
+    .stats-band-item{border-left:3px solid var(--black);padding-left:20px}
+    .stats-band-grid{gap:30px}
+    .product-hero{padding:100px 20px}
+    .product-image-wrap{aspect-ratio:1/0.9}
+    .video{padding:100px 20px}
+    .marquee-item{font-size:36px}
+    .footer-bot{flex-direction:column;text-align:center}
+  }
+  @media (max-width:560px){
+    .brand-name{font-size:22px;letter-spacing:0.06em}
+    .brand-tag{display:none}
+    .brand-mark{width:38px;height:38px;font-size:24px}
+    .nav-cta{padding:10px 16px;font-size:10px}
+    h1.mega{font-size:54px}
+    h2.section-mega{font-size:42px}
+    .product-text h2{font-size:48px}
+    .hero-actions{flex-direction:column;align-items:stretch}
+    .btn{justify-content:center;padding:18px 24px;font-size:11px}
+    .vs-side{padding:32px 24px;min-height:300px}
+    .vs-side h3{font-size:32px}
+    .spec-strip{grid-template-columns:repeat(2,1fr)}
+    .spec-cell{border-bottom:1px solid var(--line)}
+    .spec-cell:nth-child(2){border-right:none}
+    .spec-cell:nth-last-child(-n+2){border-bottom:none}
+    .form{padding:36px 24px}
+    .field-row{grid-template-columns:1fr;gap:0}
+    .marquee-item{font-size:28px}
+    .stats-band-num{font-size:64px}
+    .calc-input-wrap{flex-direction:column;align-items:stretch}
+    .calc-value{width:100%}
+    .video-frame::before{border-top-width:18px;border-left-width:18px}
+    .form::before{border-top-width:20px;border-left-width:20px}
+    .client-block{padding:40px 28px}
+    .client-block h3{font-size:36px}
+    .whatsapp-fab{width:56px;height:56px;bottom:20px;right:20px}
+    .product-image-wrap{aspect-ratio:1/0.7}
+    .inquiry-bg-text{display:none}
+    .product-hero::before{font-size:200px}
+  }
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-text">
+    <span style="animation-delay:0s">S</span><span style="animation-delay:0.05s">A</span><span style="animation-delay:0.1s">L</span><span style="animation-delay:0.15s">U</span><span style="animation-delay:0.2s">B</span><span style="animation-delay:0.25s">R</span><span style="animation-delay:0.3s">I</span><span style="animation-delay:0.35s">O</span><span style="animation-delay:0.4s">U</span><span style="animation-delay:0.45s">S</span>
+  </div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- TOP TICKER -->
+<div class="top-bar">
+  <div class="top-bar-track">
+    <span class="top-bar-item">Authorised Cub Cadet® Supplier · India</span>
+    <span class="top-bar-item">Trusted by India's Finest Resorts</span>
+    <span class="top-bar-item">72-hour Quote · Pan-India Delivery</span>
+    <span class="top-bar-item">Lifetime Parts Pledge</span>
+    <span class="top-bar-item">Call +91 99784 66048</span>
+    <span class="top-bar-item">Authorised Cub Cadet® Supplier · India</span>
+    <span class="top-bar-item">Trusted by India's Finest Resorts</span>
+    <span class="top-bar-item">72-hour Quote · Pan-India Delivery</span>
+    <span class="top-bar-item">Lifetime Parts Pledge</span>
+    <span class="top-bar-item">Call +91 99784 66048</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="brand">
+    <div class="brand-mark">S</div>
+    <div>
+      <div class="brand-name">Salubrious</div>
+      <div class="brand-tag">Resort Equipment · India</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#status">Why It Matters</a>
+    <a href="#product">The Machine</a>
+    <a href="#clientele">For Whom</a>
+    <a href="tel:+919978466048" class="nav-phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      99784 66048
+    </a>
+    <a href="#consult" class="nav-cta">Request Consultation →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-stage">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+  </div>
+
+  <div class="hero-live-badge">
+    <div class="rec-dot"></div>
+    <span>Live · India's Finest Estates</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="pulse"></span>
+      Trusted by India's Finest Resorts
+    </div>
+    <h1 class="mega">
+      <span class="line"><span style="animation-delay:0.3s">A lawn</span></span>
+      <span class="line"><span style="animation-delay:0.5s">your guests</span></span>
+      <span class="line"><span class="serif" style="animation-delay:0.7s">will remember.</span></span>
+    </h1>
+    <div class="hero-sub">
+      <p class="hero-lead">
+        The one machine behind India's <strong>most photographed lawns.</strong>
+      </p>
+    </div>
+    <div class="hero-actions">
+      <a href="#product" class="btn btn-gold"><span>See The Machine</span> <span class="btn-arrow">→</span></a>
+      <a href="#consult" class="btn btn-outline">Request a Consultation</a>
+    </div>
+  </div>
+
+  <div class="hero-credential">
+    <div class="hero-credential-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+    </div>
+    <div>
+      <small>Status of</small>
+      <strong>An estate that pays attention.</strong>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-cue-line"></div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">India's Finest Properties</span>
+    <span class="marquee-item">Choose <span class="serif">Salubrious</span></span>
+    <span class="marquee-item">India's Finest Properties</span>
+    <span class="marquee-item">Choose <span class="serif">Salubrious</span></span>
+    <span class="marquee-item">India's Finest Properties</span>
+    <span class="marquee-item">Choose <span class="serif">Salubrious</span></span>
+  </div>
+</div>
+
+<!-- STATUS / FOMO SECTION -->
+<section class="status" id="status">
+  <div class="container">
+    <div class="status-header reveal">
+      <div class="eyebrow">The Difference Guests Notice</div>
+      <h2>
+        Guests see your lawn<br>
+        <span class="serif">before they see you.</span>
+      </h2>
+      <p>The lawns end up on Instagram. The reviews mention them by name. <strong>The estates that look this way invest in equipment most don't.</strong></p>
+    </div>
+
+    <div class="vs-grid reveal">
+      <div class="vs-side bad">
+        <span class="vs-tag">Most Properties</span>
+        <h3>Patchy.<br>Inconsistent.<br>Forgettable.</h3>
+        <p>Three labourers. Uneven cuts. Guests notice — they just don't say it.</p>
+      </div>
+      <div class="vs-side good">
+        <span class="vs-tag">Salubrious Estates</span>
+        <h3>Cut like a fairway.<br><span class="gold">Every morning.</span></h3>
+        <p>One operator. One machine. A 54-inch professional cut before breakfast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT HERO -->
+<section class="product-hero" id="product">
+  <div class="product-hero-grid reveal">
+    <div class="product-image-wrap">
+      <div class="product-image-bg-deco"></div>
+      <div class="product-image-corners">
+        <div class="product-corner pc-tl"></div>
+        <div class="product-corner pc-tr"></div>
+        <div class="product-corner pc-bl"></div>
+        <div class="product-corner pc-br"></div>
+      </div>
+      <div class="product-badge-spec top-right">
+        <div class="num">26<span style="font-size:14px">HP</span></div>
+        <div class="lbl">Kohler® HD</div>
+      </div>
+      <div class="product-badge-spec bottom-left">
+        <div class="num">54<span style="font-size:14px">"</span></div>
+        <div class="lbl">AeroForce™</div>
+      </div>
+      <img src="https://www.cubcadet.com/dw/image/v2/BCSH_PRD/on/demandware.static/-/Sites-mtd-master-catalog/default/dwa41375e5/products/Equipment/Cub-Cadet_XT2GX54_2000x2000_8.jpg" alt="Cub Cadet XT2 GX54 D">
+    </div>
+    <div class="product-text">
+      <div class="product-series">XT2 Enduro Series · Made in USA</div>
+      <h2>The <span class="gold">XT2</span><br>GX54 D</h2>
+      <p class="tagline">The mower India's finest estates quietly rely on.</p>
+      <div class="spec-strip">
+        <div class="spec-cell"><div class="lbl">Engine</div><div class="val">26<small>HP</small></div></div>
+        <div class="spec-cell"><div class="lbl">Cut Width</div><div class="val">54<small>IN</small></div></div>
+        <div class="spec-cell"><div class="lbl">Capacity</div><div class="val">747<small>CC</small></div></div>
+        <div class="spec-cell"><div class="lbl">Powered By</div><div class="val">Kohler<small>®</small></div></div>
+      </div>
+      <ul class="feature-list">
+        <li><strong style="color:#fff">Kohler® HD twin-cylinder</strong> — built for daily estate use</li>
+        <li><strong style="color:#fff">AeroForce™ 54-inch deck</strong> — professional-grade even cut</li>
+        <li><strong style="color:#fff">Rear differential lock</strong> — handles slopes and soft ground</li>
+      </ul>
+      <div class="product-actions">
+        <a href="#consult" class="btn btn-gold"><span>Request Consultation</span> <span class="btn-arrow">→</span></a>
+        <a href="https://wa.me/919978466048?text=Hello%20Salubrious%2C%20I%27d%20like%20to%20know%20more%20about%20the%20XT2%20GX54%20D%20for%20my%20property" target="_blank" class="btn btn-outline">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video">
+  <div class="video-header reveal">
+    <div class="eyebrow">See It In Action</div>
+    <h2>Watch the<br><span class="serif">XT Enduro Series.</span></h2>
+  </div>
+  <div class="video-frame reveal">
+    <a href="https://www.youtube.com/watch?v=dlhTy2Mwczk" target="_blank" rel="noopener" class="video-play" aria-label="Watch on YouTube">
+      <div class="video-poster"></div>
+      <div class="video-play-btn">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-play-label">
+        <small>Click to watch</small>
+        <strong>The XT Enduro Series in action</strong>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- DARK MARQUEE -->
+<div class="marquee dark">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="serif">Engineered</span> in America</span>
+    <span class="marquee-item"><span class="serif">Delivered</span> to India</span>
+    <span class="marquee-item"><span class="serif">Engineered</span> in America</span>
+    <span class="marquee-item"><span class="serif">Delivered</span> to India</span>
+    <span class="marquee-item"><span class="serif">Engineered</span> in America</span>
+    <span class="marquee-item"><span class="serif">Delivered</span> to India</span>
+  </div>
+</div>
+
+<!-- CLIENTELE -->
+<section class="clientele" id="clientele">
+  <div class="container">
+    <div class="clientele-header reveal">
+      <div class="eyebrow">Built For</div>
+      <h2 class="section-mega">Properties that<br><span class="serif">define standards.</span></h2>
+    </div>
+
+    <div class="clientele-grid reveal-stagger">
+      <div class="client-block">
+        <span class="client-num">01</span>
+        <h3>Luxury <span class="serif">Resorts</span></h3>
+        <p>Where the grounds appear in every guest's photograph.</p>
+        <div class="client-arrow">→</div>
+      </div>
+      <div class="client-block">
+        <span class="client-num">02</span>
+        <h3>Palace <span class="serif">Hotels</span></h3>
+        <p>Heritage estates where lawns are as historic as the architecture.</p>
+        <div class="client-arrow">→</div>
+      </div>
+      <div class="client-block">
+        <span class="client-num">03</span>
+        <h3>Golf <span class="serif">Retreats</span></h3>
+        <p>Championship-grade fairways. Commercial-grade tolerances.</p>
+        <div class="client-arrow">→</div>
+      </div>
+      <div class="client-block">
+        <span class="client-num">04</span>
+        <h3>Boutique <span class="serif">Estates</span></h3>
+        <p>Vineyards, wellness retreats, members' clubs.</p>
+        <div class="client-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band reveal">
+  <div class="stats-band-grid">
+    <div class="stats-band-item">
+      <div class="stats-band-num"><span class="counter" data-target="28">0</span><small>+</small></div>
+      <div class="stats-band-lbl">States Served</div>
+    </div>
+    <div class="stats-band-item">
+      <div class="stats-band-num"><span class="counter" data-target="100">0</span><small>%</small></div>
+      <div class="stats-band-lbl">Authentic Cub Cadet®</div>
+    </div>
+    <div class="stats-band-item">
+      <div class="stats-band-num"><span class="counter" data-target="72">0</span><small>HR</small></div>
+      <div class="stats-band-lbl">Quote Response</div>
+    </div>
+    <div class="stats-band-item">
+      <div class="stats-band-num">∞</div>
+      <div class="stats-band-lbl">Lifetime Parts Pledge</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONSULTATION FORM -->
+<section class="inquiry" id="consult">
+  <div class="inquiry-bg-text">Consult</div>
+  <div class="container">
+    <div class="inquiry-grid reveal">
+      <div class="inquiry-left">
+        <div class="urgency-badge">
+          <span class="dot"></span>
+          <span>Limited 2026 Allocation Open</span>
+        </div>
+        <div class="eyebrow">Request a Consultation</div>
+        <h2>Quoted in<br><span class="serif">72 hours.</span></h2>
+        <p>Tell us about your property. We'll respond within 72 hours.</p>
+
+        <div class="contact-list">
+          <div class="contact-row">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <small>Direct Line</small>
+              <a href="tel:+919978466048">+91 99784 66048</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </div>
+            <div>
+              <small>Email</small>
+              <a href="mailto:salubriousearth@gmail.com">salubriousearth@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/></svg>
+            </div>
+            <div>
+              <small>WhatsApp</small>
+              <a href="https://wa.me/919978466048" target="_blank">Message us instantly</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" id="inquiryForm" onsubmit="handleSubmit(event)">
+        <div class="form-content">
+          <div class="form-title">Request<br>Consultation</div>
+          <div class="form-sub">No obligation · Reply in 72 hours</div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Your Name <span class="req">*</span></label>
+              <input type="text" name="name" required>
+            </div>
+            <div class="field">
+              <label>Designation</label>
+              <input type="text" name="role" placeholder="GM, Owner...">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Property Name <span class="req">*</span></label>
+            <input type="text" name="property" required placeholder="The name of your resort / hotel / estate">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" name="phone" required placeholder="+91...">
+            </div>
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" name="email" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Property Location</label>
+            <input type="text" name="location" placeholder="City, State">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Lawn Size (Acres) <span class="req">*</span></label>
+              <select name="acres" required>
+                <option value="">Select</option>
+                <option>Under 1 acre</option>
+                <option>1 - 3 acres</option>
+                <option>3 - 5 acres</option>
+                <option>5 - 10 acres</option>
+                <option>10+ acres</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Current Setup <span class="req">*</span></label>
+              <select name="setup" required>
+                <option value="">Select</option>
+                <option>Manual labour only</option>
+                <option>External contractor</option>
+                <option>Old / used mower</option>
+                <option>No system in place yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Anything else we should know?</label>
+            <textarea name="message" placeholder="Terrain, seasons of high traffic, timeline..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit"><span>Submit Consultation Request →</span></button>
+
+          <div class="form-trust">
+            <div class="form-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              No obligation
+            </div>
+            <div class="form-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              72hr response
+            </div>
+            <div class="form-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Confidential
+            </div>
+          </div>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>Received.</h3>
+          <p>Thank you. A member of our team will respond personally within 72 hours with a tailored proposal for your property.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/919978466048?text=Hello%20Salubrious%2C%20I%27d%20like%20to%20know%20more%20about%20the%20XT2%20GX54%20D%20for%20my%20resort" target="_blank" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-name">SALUBRIOUS</div>
+      <div style="font-family:var(--bold);font-size:10px;letter-spacing:0.32em;color:var(--gold);text-transform:uppercase;font-weight:700">Resort Equipment · India</div>
+      <p>The riding mower trusted by India's most prestigious estates.</p>
+    </div>
+    <div class="footer-col">
+      <h4>The Machine</h4>
+      <a href="#product">XT2 GX54 D</a>
+      <a href="#consult">Request Consultation</a>
+    </div>
+    <div class="footer-col">
+      <h4>Salubrious</h4>
+      <a href="#status">Why It Matters</a>
+      <a href="#clientele">For Whom</a>
+      <a href="#consult">Get a Quote</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+919978466048">+91 99784 66048</a>
+      <a href="mailto:salubriousearth@gmail.com">salubriousearth@gmail.com</a>
+      <a href="https://wa.me/919978466048" target="_blank">WhatsApp</a>
+      <p style="color:var(--gray);margin-top:14px">Mon — Sat · 10:00 to 19:00 IST</p>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div>© 2026 Salubrious</div>
+    <div class="gold">Engineered in America. Delivered to India.</div>
+    <div>Cub Cadet® is a trademark of its respective owner</div>
+  </div>
+</footer>
+
+<script>
+  // ===== Loader
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('gone'), 1500);
+  });
+
+  // ===== Nav scrolled state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ===== Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => io.observe(r));
+
+  // ===== Counter
+  const counters = document.querySelectorAll('.counter');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = +el.dataset.target;
+        const dur = 2000;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now-start)/dur, 1);
+          const eased = 1 - Math.pow(1-p, 3);
+          el.textContent = Math.floor(target * eased);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterIO.observe(c));
+
+  // ===== Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const subject = encodeURIComponent('Salubrious Consultation — ' + (data.get('property') || data.get('name')));
+    const body = encodeURIComponent(
+      'Name: ' + data.get('name') + '\n' +
+      'Designation: ' + (data.get('role') || '—') + '\n' +
+      'Property: ' + data.get('property') + '\n' +
+      'Phone: ' + data.get('phone') + '\n' +
+      'Email: ' + data.get('email') + '\n' +
+      'Location: ' + (data.get('location') || '—') + '\n' +
+      'Lawn Size: ' + (data.get('acres') || '—') + '\n' +
+      'Current Setup: ' + (data.get('setup') || '—') + '\n\n' +
+      'Notes:\n' + (data.get('message') || '—')
+    );
+    window.location.href = 'mailto:salubriousearth@gmail.com?subject=' + subject + '&body=' + body;
+    form.querySelector('.form-content').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+</script>
+
+</body>
+</html>
